@@ -5,6 +5,7 @@ JointLab is a Unity3D-based educational tool developed as part of a Master's the
 This repository includes:
 
 Unity project files and C# scripts
+
 Packaged RobotStudio environment with RAPID scripts
 
 JointLab is intended for educational institutions, robotics labs, and design programs seeking accessible and immersive robotic training tools.
