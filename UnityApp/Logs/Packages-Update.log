@@ -1,0 +1,25 @@
+
+=== Sat Mar 15 11:59:37 2025
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 2.0.4 to 2.5.2
+  com.unity.ide.rider from version 3.0.21 to 3.0.31
+  com.unity.ide.visualstudio from version 2.0.18 to 2.0.22
+  com.unity.timeline from version 1.4.8 to 1.6.5
+  com.unity.xr.management from version 4.0.1 to 4.5.0
+
+=== Wed Mar 19 13:10:37 2025
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.ai.navigation@1.1.5
+The following packages were updated:
+  com.unity.collab-proxy from version 2.5.2 to 2.6.0
+  com.unity.ide.rider from version 3.0.31 to 3.0.34
+  com.unity.textmeshpro from version 3.0.6 to 3.0.7
+  com.unity.timeline from version 1.6.5 to 1.7.6

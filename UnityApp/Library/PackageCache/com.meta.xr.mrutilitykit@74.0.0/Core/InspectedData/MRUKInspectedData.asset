@@ -1,0 +1,234 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82874db8faf1071438bbcf855a2e8a93, type: 3}
+  m_Name: MRUKInspectedData
+  m_EditorClassIdentifier: 
+  DisplayName: '[Meta] MRUK'
+  InspectedMembers:
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Tools
+      Description: Highlights the best suggested transform to place a widget on a
+        surface.
+      DisplayName: 'Get Best Pose Positioning Method '
+    memberName: _positioningMethod
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Tools
+      Description: Moves the debug sphere to the controller position and colors it
+        in green if its position is in the room, red otherwise.
+      DisplayName: Is Position In Room
+    memberName: IsPositionInRoom
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Tools
+      Description: Shows the debug anchor visualization mode for the anchor being
+        pointed at.
+      DisplayName: Show Debug Anchors
+    memberName: DisplayDebugAnchors
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Tools
+      Description: Casts a ray cast forward from the right controller position and
+        draws the normal of the first Scene API object hit.
+      DisplayName: 'Raycast '
+    memberName: Raycast
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Tools
+      Description: Highlights the best suggested transform to place a widget on a
+        surface.
+      DisplayName: Get Best Pose From Ray Cast
+    memberName: GetBestPoseFromRayCast
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Tools
+      Description: Highlights the room's key wall, defined as the longest wall in
+        the room which has no other room points behind it
+      DisplayName: Get Key Wall
+    memberName: GetKeyWall
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Tools
+      Description: Highlights the anchor with the largest available surface area.
+      DisplayName: Get Largest Surface
+    memberName: GetLargestSurface
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Tools
+      Description: Highlights the best-suggested seat, for something like remote
+        caller placement.
+      DisplayName: Get Closest Seat Pose
+    memberName: GetClosestSeatPose
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Tools
+      Description: Highlights the closest position on a SceneAPI surface.
+      DisplayName: Get Closest Surface Position
+    memberName: GetClosestSurfacePosition
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Scene Settings
+      Description: Displays the global mesh anchor if one is found in the scene.
+      DisplayName: Display Global Mesh
+    memberName: ShouldDisplayGlobalMesh
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Scene Settings
+      Description: Toggles the global mesh anchor's collision.
+      DisplayName: Global Mesh Collisions
+    memberName: ShouldToggleGlobalMeshCollision
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Scene Settings
+      Description: Displays the nav mesh, if present.
+      DisplayName: Display Nav mesh
+    memberName: ShouldDisplayNavMesh
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Tools
+      Description: Exports the current scene data to a JSON file if the specified
+        condition is met.
+      DisplayName: Export Room to JSON
+    memberName: ExportJSON
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.ImmersiveSceneDebugger, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Tools
+      Description: Dropdown to select what surface types to debug
+      DisplayName: Largest Surface Type
+    memberName: _largestSurfaceFilter
+    _editorSelectedGizmoIndex: 0
+  - enabled: 1
+    typeName: Meta.XR.MRUtilityKit.SpaceMapGPU, meta.xr.mrutilitykit
+    attribute:
+      GizmoType: 0
+      ShowGizmoByDefault: 0
+      Color: {r: 0, g: 0, b: 0, a: 0}
+      Tweakable: 1
+      Min: 0
+      Max: 1
+      Category: Meta MRUK Scene Settings
+      Description: A 2D top-down texture of the room's layout.
+      DisplayName: Space Map
+    memberName: OutputTexture
+    _editorSelectedGizmoIndex: 0

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d5758cfb47823489080981979f33be, type: 3}
+  m_Name: InstantContentPlacement
+  m_EditorClassIdentifier: 
+  id: 57779e00-c8b6-4c33-8acb-0fd0f6327693
+  version: 1
+  blockName: Instant Content Placement
+  description: Locate and place a Prefab in your physical environment without Room
+    Setup.
+  tags:
+    array:
+    - name: Scene
+    - name: Depth
+    - name: MRUK
+    - name: Experimental
+  thumbnail: {fileID: 2800000, guid: 0aa8fdc06ed7df8478c8911a432173da, type: 3}
+  order: 0
+  prefab: {fileID: 0}
+  selectedGuidedSetupIndex: 0
+  externalBlockDependencies: []
+  dependencies:
+  - e47682b9-c270-40b1-b16d-90b627a5ce1b
+  - f0540b20-dfd6-420e-b20d-c270f88dc77e
+  - 3ce5fc30-a5c9-4ad0-a76d-3583bcd405b0
+  guidedSetupName: None
+  packageDependencies: []
+  isSingleton: 0
+  usageInstructions: "Drag and drop this block over the target GameObject and this
+    GameObject will be used to locate spaces.\r\n\nPointAndPlace interaction mode:\n
+    - Register to PointAndPlace.OnSpaceLocateCompleted event to receive the detected
+    surface pose data. \r\n - Remove the \"[BuildingBlock] RaycastVisualizer\" GameObject
+    to hide the raycast visualization.\r\n\nGrabAndPlace interaction mode:\n - On
+    install, it'll make the target object grabbable by hands and controllers. On
+    grab release, it'll initiate the space finding in the nearest surface based on
+    GrabAndPlace.PlacementSide value.\n - Register to GrabAndPlace.OnSpaceLocateCompleted
+    event to receive the detected surface pose data. \n\nCustomMode:\nCustom mode
+    will not provide any interaction model. It\u2019ll just configure the dependencies
+    to use Instant Placement API. See EnvironmentRaycastManager component to get
+    started.\r\n"
+  featureDocumentationName: Environment Raycasting
+  featureDocumentationUrl: https://developers.meta.com/horizon/documentation/unity/unity-mr-utility-kit-features#environment-raycasting-beta

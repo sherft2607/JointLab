@@ -1,0 +1,29 @@
+{
+  "name": "com.meta.xr.sdk.voice.composer",
+  "displayName": "Meta - Voice SDK - Composer",
+  "version": "74.0.0",
+  "dependencies": {
+    "com.meta.xr.sdk.voice": "74.0.0"
+  },
+  "samples": [
+    {
+      "displayName": "Composer Samples",
+      "description": "Single Character Sample: A very simple composer driven experience with a single character.\n Double Characters Sample: A complex composer driven experience with multiple characters & multiple composers. \n Context Map Sample: A demo scene showing how to work with the Composer's Context Map",
+      "path": "Samples/Composer"
+    }
+  ],
+  "unity": "2022.3",
+  "unityRelease": "15f1",
+  "author": {
+    "name": "Meta - Voice SDK",
+    "url": "https://wit.ai"
+  },
+  "keywords": [
+    "Meta",
+    "SDK",
+    "Voice"
+  ],
+  "description": "This package provides support for Composer, a feature in Wit.ai for visually designing interactive conversations in a graph-based dialogue designer.",
+  "documentationUrl": "https://developer.oculus.com/documentation/unity/voice-sdk-overview/",
+  "changelogUrl": "https://developer.oculus.com/downloads/package/meta-voice-sdk/"
+}

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c4ad19f06c67e44a2d7ba8d05f31b7, type: 3}
+  m_Name: EntitlementCheck
+  m_EditorClassIdentifier:
+  id: de58ce3e-0953-4327-8bfc-f6db204d199c
+  version: 1
+  blockName: EntitlementCheck
+  description: The Oculus Platform SDK Entitlement Check is used to confirm whether
+    a user has purchased or obtained a specific game or application legitimately.
+    This is a crucial step in preventing unauthorized access and piracy.
+  tags:
+    array:
+    - name: Platform
+    - name: Production
+    - name: Publishing
+  thumbnail: {fileID: 2800000, guid: 120ddf7de3b2f2448a083969e5509a8b, type: 3}
+  order: 0
+  prefab: {fileID: 6202047906858020985, guid: 963a347878c78464a863f2ecb0273474, type: 3}
+  externalBlockDependencies: []
+  dependencies: []
+  packageDependencies: []
+  isSingleton: 1
+  usageInstructions: "To complete the entitlement check, set your applicatoin ID
+    for Oculus Platform Settings by Selecting 'Meta' -> 'Platorm' -> 'Edit Settings'.\nThere
+    is a boolean parameter called 'Quit App On Not Entitled.' By default, it is set
+    to false. When set to true, the app will quit if any failure occurs during the
+    entitlement check process. \nTwo actions are available: UserFailedEntitlementCheck
+    and UserPassedEntitlementCheck. The app has the option to subscribe to these
+    events for implementing custom logic when the check fails or passes."
+  featureDocumentationName: Setup Platform Entitlements
+  featureDocumentationUrl: https://developers.meta.com/horizon/documentation/unity/unity-platform-entitlements

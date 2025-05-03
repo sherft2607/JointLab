@@ -1,0 +1,262 @@
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * Licensed under the Oculus SDK License Agreement (the "License");
+ * you may not use the Oculus SDK except in compliance with the License,
+ * which is provided at the time of installation or download, or which
+ * otherwise accompanies this software in either electronic or hard copy form.
+ *
+ * You may obtain a copy of the License at
+ *
+ * https://developer.oculus.com/licenses/oculussdk/
+ *
+ * Unless required by applicable law or agreed to in writing, the Oculus SDK
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
+using UnityEngine;
+using UnityEngine.Serialization;
+
+namespace Oculus.Interaction
+{
+    /// <summary>
+    /// Obsolete: Makes the GameObject it's attached to kinematic during a grab. As a result, the GameObject can be transformed 1-1 without any
+    /// undesirable effects. The features of this type are now available in <see cref="Grabbable"/> and
+    /// <see cref="RigidbodyKinematicLocker"/>, which are the recommended way for new code to leverage physics in grab interactions.
+    /// </summary>
+    [Obsolete("Use " + nameof(Grabbable) + " and/or " + nameof(RigidbodyKinematicLocker) + " instead")]
+    public class PhysicsGrabbable : MonoBehaviour
+    {
+        /// <summary>
+        /// The <cref="IPointable" /> of the non-kinematic GameObject that should be kinematic during a grab.
+        /// </summary>
+        [SerializeField, Interface(typeof(IPointable))]
+        [FormerlySerializedAs("_grabbable")]
+        private UnityEngine.Object _pointable;
+        private IPointable Pointable { get; set; }
+
+        /// <summary>
+        /// The <cref="Rigidbody" /> of the non-kinematic GameObject that should be kinematic during a grab.
+        /// </summary>
+        [SerializeField]
+        private Rigidbody _rigidbody;
+
+        [SerializeField]
+        [Tooltip("If enabled, the object's mass will scale appropriately as the scale of the object changes.")]
+        private bool _scaleMassWithSize = true;
+
+        private Vector3 _initialScale;
+        private bool _hasPendingForce;
+        private Vector3 _linearVelocity;
+        private Vector3 _angularVelocity;
+        private int _selectorsCount = 0;
+
+        protected bool _started = false;
+
+        /// <summary>
+        /// An event which signals when new velocities have been applied to this grabbable, for example in response to a grab by a
+        /// <see cref="GrabInteractor"/>. Handlers must accept two Vector3 arguments: linear velocity, and angular velocity.
+        /// </summary>
+        public event Action<Vector3, Vector3> WhenVelocitiesApplied = delegate { };
+
+        #region Editor
+        private void Reset()
+        {
+            _pointable = this.GetComponent<IPointable>() as UnityEngine.Object;
+            _rigidbody = this.GetComponent<Rigidbody>();
+        }
+        #endregion
+
+        protected virtual void Awake()
+        {
+            Pointable = _pointable as IPointable;
+        }
+
+        protected virtual void Start()
+        {
+            this.BeginStart(ref _started);
+            this.AssertAspect(Pointable, nameof(_pointable));
+            this.AssertField(_rigidbody, nameof(_rigidbody));
+            this.EndStart(ref _started);
+        }
+
+        protected virtual void OnEnable()
+        {
+            if (_started)
+            {
+                Pointable.WhenPointerEventRaised += HandlePointerEventRaised;
+            }
+        }
+
+        protected virtual void OnDisable()
+        {
+            if (_started)
+            {
+                Pointable.WhenPointerEventRaised -= HandlePointerEventRaised;
+
+                if (_selectorsCount != 0)
+                {
+                    _selectorsCount = 0;
+                    ReenablePhysics();
+                }
+            }
+        }
+
+        private void HandlePointerEventRaised(PointerEvent evt)
+        {
+            switch (evt.Type)
+            {
+                case PointerEventType.Select:
+                    AddSelection();
+                    break;
+                case PointerEventType.Cancel:
+                case PointerEventType.Unselect:
+                    RemoveSelection();
+                    break;
+            }
+        }
+
+        private void AddSelection()
+        {
+            if (_selectorsCount++ == 0)
+            {
+                DisablePhysics();
+            }
+        }
+
+        private void RemoveSelection()
+        {
+            if (--_selectorsCount == 0)
+            {
+                ReenablePhysics();
+            }
+            _selectorsCount = Mathf.Max(0, _selectorsCount);
+        }
+
+        private void DisablePhysics()
+        {
+            CachePhysicsState();
+            _rigidbody.LockKinematic();
+        }
+
+        private void ReenablePhysics()
+        {
+            // update the mass based on the scale change
+            if (_scaleMassWithSize)
+            {
+                float initialScaledVolume = _initialScale.x * _initialScale.y * _initialScale.z;
+
+                Vector3 currentScale = _rigidbody.transform.localScale;
+                float currentScaledVolume = currentScale.x * currentScale.y * currentScale.z;
+
+                float changeInMassFactor = currentScaledVolume / initialScaledVolume;
+                _rigidbody.mass *= changeInMassFactor;
+            }
+
+            // revert the original kinematic state
+            _rigidbody.UnlockKinematic();
+        }
+
+        /// <summary>
+        /// Sets the velocities to be applied to the grabbable during the next Unity fixed update.
+        /// </summary>
+        /// <remarks>
+        /// Note that, since the velocities
+        /// are not actually applied synchronously here, this will _not_ trigger an invocation of <see cref="WhenVelocitiesApplied"/>;
+        /// that will happen when the velocities are actually provided to the physics system during the next fixed update.
+        /// </remarks>
+        /// <param name="linearVelocity">The linear velocity to be applied</param>
+        /// <param name="angularVelocity">The angular velocity to be applied</param>
+        public void ApplyVelocities(Vector3 linearVelocity, Vector3 angularVelocity)
+        {
+            _hasPendingForce = true;
+            _linearVelocity = linearVelocity;
+            _angularVelocity = angularVelocity;
+        }
+
+        private void FixedUpdate()
+        {
+            if (_hasPendingForce)
+            {
+                _hasPendingForce = false;
+                _rigidbody.AddForce(_linearVelocity, ForceMode.VelocityChange);
+                _rigidbody.AddTorque(_angularVelocity, ForceMode.VelocityChange);
+                WhenVelocitiesApplied(_linearVelocity, _angularVelocity);
+            }
+        }
+
+        private void CachePhysicsState()
+        {
+            _initialScale = _rigidbody.transform.localScale;
+        }
+
+        #region Inject
+        /// <summary>
+        /// Injects all required dependencies for a dynamically instantiated PhysicsGrabbable; effectively wraps
+        /// <see cref="InjectPointable(IPointable)"/> and <see cref="InjectRigidbody(Rigidbody)"/>. This method exists to support
+        /// Interaction SDK's dependency injection pattern and is not needed for typical Unity Editor-based usage.
+        /// </summary>
+        public void InjectAllPhysicsGrabbable(IPointable pointable, Rigidbody rigidbody)
+        {
+            InjectPointable(pointable);
+            InjectRigidbody(rigidbody);
+        }
+
+        /// <summary>
+        /// Obsolete: Injects all required dependencies for a dynamically instantiated PhysicsGrabbable; effectively wraps
+        /// <see cref="InjectPointable(IPointable)"/> and <see cref="InjectRigidbody(Rigidbody)"/>. This method exists to support
+        /// Interaction SDK's dependency injection pattern and is not needed for typical Unity Editor-based usage.
+        /// </summary>
+        [Obsolete("Use " + nameof(InjectAllPhysicsGrabbable) + " with " + nameof(IPointable) + " instead")]
+        public void InjectAllPhysicsGrabbable(Grabbable grabbable, Rigidbody rigidbody)
+        {
+            InjectPointable(grabbable);
+            InjectRigidbody(rigidbody);
+        }
+
+        /// <summary>
+        /// Obsolete: wraps <see cref="InjectPointable(IPointable)"/>, which should be used directly in new code. This method exists
+        /// to support Interaction SDK's dependency injection pattern and is not needed for typical Unity Editor-based usage.
+        /// </summary>
+        [Obsolete("Use " + nameof(InjectPointable) + " instead")]
+        public void InjectGrabbable(Grabbable grabbable)
+        {
+            InjectPointable(grabbable);
+        }
+
+        /// <summary>
+        /// Sets an <see cref="IPointable"/> for a dynamically instantiated PhysicsGrabbable. This method exists to support Interaction
+        /// SDK's dependency injection pattern and is not needed for typical Unity Editor-based usage.
+        /// </summary>
+        public void InjectPointable(IPointable pointable)
+        {
+            _pointable = pointable as UnityEngine.Object;
+            Pointable = pointable;
+        }
+
+        /// <summary>
+        /// Sets the Unity Rigidbody for a dynamically instantiated PhysicsGrabbable. This method exists to support Interaction
+        /// SDK's dependency injection pattern and is not needed for typical Unity Editor-based usage.
+        /// </summary>
+        public void InjectRigidbody(Rigidbody rigidbody)
+        {
+            _rigidbody = rigidbody;
+        }
+
+        /// <summary>
+        /// Sets whether or not to scale mass with size for a dynamically instantiated PhysicsGrabbable. This method exists to support
+        /// Interaction SDK's dependency injection pattern and is not needed for typical Unity Editor-based usage.
+        /// </summary>
+        public void InjectOptionalScaleMassWithSize(bool scaleMassWithSize)
+        {
+            _scaleMassWithSize = scaleMassWithSize;
+        }
+
+        #endregion
+    }
+}

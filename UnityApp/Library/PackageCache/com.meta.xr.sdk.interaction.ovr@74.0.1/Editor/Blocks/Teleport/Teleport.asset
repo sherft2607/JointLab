@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d5758cfb47823489080981979f33be, type: 3}
+  m_Name: Teleport
+  m_EditorClassIdentifier: 
+  id: 85906e61-05be-4ea9-bfa6-139215b858df
+  version: 1
+  blockName: Teleport
+  description: 'Teleporting is a locomotion interaction that allows the user to select
+    a distant location in the scene and move to it instantly.
+
+    This blocks enables
+    this form of locomotion and lets you add Hotspots, Navigation Mesh and other
+    Surfaces to your scene.'
+  tags:
+    array:
+    - name: Interaction
+    - name: Locomotion
+    - name: Experimental
+    - name: ISDK
+  thumbnail: {fileID: 2800000, guid: aeee651c76cd19f4bbcbf5a471e1114a, type: 3}
+  order: 0
+  prefab: {fileID: 0}
+  externalBlockDependencies: []
+  dependencies:
+  - 0393ca30-f2a9-4865-a40f-f9a68d01c3a9
+  - f10154e0-16b2-492f-97d0-6639f69e7df6
+  packageDependencies: []
+  isSingleton: 0
+  usageInstructions: 
+  featureDocumentationName: Teleport Interaction
+  featureDocumentationUrl: https://developers.meta.com/horizon/documentation/unity/unity-isdk-teleport-interaction

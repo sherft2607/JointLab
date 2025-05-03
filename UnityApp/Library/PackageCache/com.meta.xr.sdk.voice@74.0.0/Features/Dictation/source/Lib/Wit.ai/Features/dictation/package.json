@@ -1,0 +1,11 @@
+{
+  "name": "com.meta.witai.dictation",
+  "displayName": "Meta - Wit.ai - Dictation",
+  "version": "74.0.0",
+  "author": {
+    "name": "Meta - Wit.ai",
+    "url": "https://wit.ai"
+  },
+  "samples": [],
+  "description": "The dictation feature enables your app to efficiently transcribe speech to text in real time. It functions similarly to voice commands except that it does not process the resultant text with natural-language understanding (NLU).\r\n\r\nThe dictation feature is not designed to be used for voice commands, but instead as a text input modality. While you could use regular expressions to parse it to use for handling commands, the text is formatted in a human readable format. As a result, you\u2019ll get much better recognition results than using the recognition within voice commands."
+}

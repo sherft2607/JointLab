@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c4ad19f06c67e44a2d7ba8d05f31b7, type: 3}
+  m_Name: EnvironmentRaycastManager
+  m_EditorClassIdentifier: 
+  id: 3ce5fc30-a5c9-4ad0-a76d-3583bcd405b0
+  version: 1
+  blockName: Environment Raycast Manager
+  description: Dependency block for Instant Content Placement block.
+  tags:
+    array:
+    - name: Hidden
+    - name: New
+  thumbnail: {fileID: 0}
+  order: 0
+  prefab: {fileID: 8082512187793909574, guid: 993a7abbb30564a439b9818cdc8d9fb4, type: 3}
+  selectedGuidedSetupIndex: 0
+  externalBlockDependencies: []
+  dependencies: []
+  guidedSetupName: 
+  packageDependencies: []
+  isSingleton: 1
+  usageInstructions: 
+  featureDocumentationName: Environment Raycasting
+  featureDocumentationUrl: https://developers.meta.com/horizon/documentation/unity/unity-mr-utility-kit-features#environment-raycasting-beta

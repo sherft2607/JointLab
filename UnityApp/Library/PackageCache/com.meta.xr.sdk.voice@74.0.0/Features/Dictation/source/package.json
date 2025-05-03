@@ -1,0 +1,29 @@
+{
+  "name": "com.meta.xr.sdk.voice.dictation",
+  "displayName": "Meta - Voice SDK - Dictation",
+  "version": "74.0.0",
+  "dependencies": {
+    "com.meta.xr.sdk.voice": "74.0.0"
+  },
+  "samples": [
+    {
+      "displayName": "Dictation",
+      "description": "A simple dictation example that shows activation & continuous wit powered dictation.",
+      "path": "Samples/Dictation"
+    }
+  ],
+  "unity": "2022.3",
+  "unityRelease": "15f1",
+  "author": {
+    "name": "Meta - Voice SDK",
+    "url": "https://wit.ai"
+  },
+  "keywords": [
+    "Meta",
+    "SDK",
+    "Voice"
+  ],
+  "description": "The Dictation addon for Voice SDK dictation  enables your app to efficiently transcribe speech to text in real time with better recognition results using immersive voice commands.",
+  "documentationUrl": "https://developer.oculus.com/documentation/unity/voice-sdk-overview/",
+  "changelogUrl": "https://developer.oculus.com/downloads/package/meta-voice-sdk/"
+}
